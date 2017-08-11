@@ -7,7 +7,9 @@ courseName: String,
 year: Number,
 semester: Number,
 department: String,
+uploadtype: String,
 myimage: String,
+
 /* path: {
  type: String,
  required: true,

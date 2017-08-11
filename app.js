@@ -25,10 +25,7 @@ var db = mongoose.collection;
 
 var fs = require('fs');
 
-var conn = mongoose.connection;
-var Grid = require('gridfs-stream');
-Grid.mongo = mongoose.mongo;
-var gfs = Grid(conn.db);
+
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));

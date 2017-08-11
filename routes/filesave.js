@@ -6,14 +6,14 @@ var fs = require('fs');
 
 
 
-var mongoose = require('mongoose');
+/*var mongoose = require('mongoose');
  var conn = mongoose.connection;
 
 mongoose.connect('mongodb://localhost/kunotes_db');
 var db = mongoose.collection;
 var Grid = require('gridfs-stream');
 Grid.mongo = mongoose.mongo;
-var gfs = Grid(conn.db);
+var gfs = Grid(conn.db);*/
 
 
 /*var upload = multer({dest: './uploads/'})*/
@@ -45,10 +45,11 @@ router.post('/',upload.any(), function (req,res){
   newFile.year = data.year;
   newFile.semester=data.semester;
   newFile.department=data.department;
+  newFile.uploadtype=data.uploadtype;
 
     newFile.save(function(err, doc){
     if (err) {console.log('error while saving in database');}
-    res.send(req.body);
+    /*res.send(req.body);*/
 
     var filename = newFile._id + images.originalname;
                     console.log(filename);
@@ -91,6 +92,7 @@ File.create(images, function(error, image) {
     if (err) throw err;
     res.redirect('/');
   });*/
+  res.redirect('/');
   
 })
 

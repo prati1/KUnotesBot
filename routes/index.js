@@ -31,11 +31,41 @@ router.get('/test', function(req,res){
 });*/
 
 router.get('/images', function(req,res){
-	Image.find({courseCode: {}},function(err,doc){
+	Image.find({courseCode: {$exists:true}},function(err,doc){
 		if (err) throw err;
 		res.render('images',{files:doc})
 	})
 })
+
+router.get('/syllabus', function(req,res){
+	Image.find({uploadtype: "S"},function(err,doc){
+		if (err) throw err;
+		res.render('syllabus',{files:doc})
+	})
+})
+
+router.get('/lectures', function(req,res){
+	Image.find({uploadtype: "L"},function(err,doc){
+		if (err) throw err;
+		res.render('lectures',{files:doc})
+	})
+})
+
+router.get('/books', function(req,res){
+	Image.find({uploadtype: "B"},function(err,doc){
+		if (err) throw err;
+		res.render('books',{files:doc})
+	})
+})
+
+router.get('/assignments', function(req,res){
+	Image.find({uploadtype: "A"},function(err,doc){
+		if (err) throw err;
+		res.render('assignments',{files:doc})
+	})
+})
+
+
 
 module.exports = router;
 
