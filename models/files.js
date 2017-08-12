@@ -20,7 +20,7 @@ myimage: String,
  required: true
  }*/
  
-});
+},{ runSettersOnQuery: true });
  
  
 var File = module.exports = mongoose.model('File', imageSchema);

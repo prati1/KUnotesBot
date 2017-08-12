@@ -4,7 +4,10 @@
  <title>All</title>
 </head>
 <body>
-<table class="table table-striped">
+
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Course code or Course Name.." title="Type in a name">
+
+<table id="myTable" class="table table-striped">
     	<% files.forEach(function(file,i){ %>
     <tr>
 	<th>Course Code:</th>
@@ -43,6 +46,27 @@
 	</tr> -->
 	<% }) %>
     </table>
+
+
+   <script>
+function myFunction() {
+  var input, filter, table, tr, td, j;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  td = table.getElementsByTagName("td");
+  for (j = 0; j < td.length; j++) {
+    tr = td[j].getElementsByTagName("tr")[0];
+    if (tr) {
+      if (tr.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        td[j].style.display = "";
+      } else {
+        td[j].style.display = "none";
+      }
+    }       
+  }
+}
+</script>
     
 </body>
 </html>

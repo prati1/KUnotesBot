@@ -41,6 +41,15 @@ router.get('/images', function(req,res){
 	})
 })
 
+
+router.get('/tablesave', function(req,res){
+	Image.find({courseCode: {$exists:true}},function(err,doc){
+		if (err) throw err;
+		res.render('tablesave',{files:doc})
+	})
+})
+
+
 router.get('/syllabus', function(req,res){
 	Image.find({uploadtype: "S"},function(err,doc){
 		if (err) throw err;
