@@ -10,6 +10,10 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+router.get('/chatbot', function(req, res, next) {
+  res.render('chatbot', { title: 'Express' });
+});
+
 /*router.get('/images', function(req,res){
 	res.render('images');
 });*/
