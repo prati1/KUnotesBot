@@ -43,30 +43,30 @@
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
   crossorigin="anonymous"></script>
 </head>
+
+
 <body>
 
-<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
-<!-- <input type="text" id="myInput" placeholder="Search for names.." title="Type in a name"> -->
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search by course code or name" title="Type in a name">
 <h1 id="header">List of Documents</h1>
 <table id="myTable">
-
-        
-    <tr>
-  <th>Course Code:</th>
-  <th>Course Name:</th>
-  <th>Year: </th>
-  <th>Semester: </th>
-  <th>Department: </th>
-  <th>Download</th>
+  <tr>
+    <th>Course Code:</th>
+    <th>Course Name:</th>
+    <th>Year: </th>
+    <th>Semester: </th>
+    <th>Department: </th>
+    <th>Download</th>
   </tr>
+   
   <% files.forEach(function(file,i){ %>
   <tr>
-  <td><%= file.courseCode %></td>
-   <td><%= file.courseName %></td>
-   <td><%= file.year %></td>
-   <td><%= file.semester %></td>
-   <td><%= file.department %></td>
-   <td><a href="/download/<%= file._id %>" ><%= file.myimage %></a></td>
+    <td><%= file.courseCode %></td>
+     <td><%= file.courseName %></td>
+     <td><%= file.year %></td>
+     <td><%= file.semester %></td>
+     <td><%= file.department %></td>
+     <td><a href="/download/<%= file._id %>" ><%= file.myimage %></a></td>
   </tr>
   <% }) %>
 </table>
@@ -86,24 +86,18 @@ function myFunction() {
         tr[i].style.display = "";
       } else {
         tr[i].style.display = "none";
-      }
-    }
-
-        if (td1) {
+        
+      if (td1) {
       if (td1.innerHTML.toUpperCase().indexOf(filter) > -1) {
         tr[i].style.display = "";
       } else {
         tr[i].style.display = "none";
       }
     }
-
-/*      if (td1) {
-      if (td1.innerHTML.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
       }
-    }*/
+    }
+
+
 
   }
 }

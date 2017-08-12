@@ -14,25 +14,6 @@ router.get('/chatbot', function(req, res, next) {
   res.render('chatbot', { title: 'Express' });
 });
 
-/*router.get('/images', function(req,res){
-	res.render('images');
-});*/
-/*router.get('/template', function(req,res){
-	res.render('template');
-});
-
-router.get('/test', function(req,res){
-	res.render('test');
-});*/
-
-
-/*router.get('/images', function(req, res) {
- 	Image.getImages(function(err, files){
- 		console.log('data..........',files[0]);
- 		if (err) throw err;
- 		res.render('images', {title: 'WLiT Bootcamp 2017', files});
- 	})
-});*/
 
 router.get('/images', function(req,res){
 	Image.find({courseCode: {$exists:true}},function(err,doc){
