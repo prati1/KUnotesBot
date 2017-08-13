@@ -11,6 +11,8 @@ var users = require('./routes/users');
 var images = require('./routes/images');
 var filesave = require('./routes/filesave');
 var download = require('./routes/download');
+var upload = require('./routes/upload');
+/*var soe = require('./routes/soe');*/
 
 var mongoose = require('mongoose');
 var app = express();
@@ -41,6 +43,9 @@ app.use('/users', users);
 app.use('/images', images);
 app.use('/filesave', filesave);
 app.use('/download',download);
+app.use('/upload',upload);
+/*app.use('./soe',soe);*/
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

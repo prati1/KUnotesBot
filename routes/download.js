@@ -12,6 +12,7 @@ router.get('/:id', function(req, res, next){
 		path = 'E:/project/KUnotes/kunotes/uploads/' +file;
 		res.download(path);
 	});
+});
 
 module.exports = router;
 
