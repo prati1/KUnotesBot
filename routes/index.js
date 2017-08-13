@@ -45,18 +45,26 @@ router.get('/soe/computer', function(req,res){
 		res.render('computer',{files:doc})
 	})
 })
-router.get('/soe/computer/#syllabus', function(req,res){
+
+router.get('/soe/complecture', function(req,res){
+	Image.find({uploadtype: "L"},function(err,doc){
+		if (err) throw err;
+		res.render('computer',{files:doc})
+	})
+})
+
+router.get('/soe/compsyllabus', function(req,res){
 	Image.find({uploadtype: "S"},function(err,doc){
 		if (err) throw err;
 		res.render('computer',{files:doc})
 	})
 })
-router.get('/soe/computer/#lectures', function(req,res){
+/*router.get('/soe/computer/#lectures', function(req,res){
 	Image.find({department: "Computer Engineering"},function(err,doc){
 		if (err) throw err;
 		res.render('computer',{files:doc})
 	})
-})
+})*/
 
 router.get('/images', function(req,res){
 	Image.find({courseCode: {$exists:true}},function(err,doc){

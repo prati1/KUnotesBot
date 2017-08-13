@@ -12,7 +12,7 @@ var images = require('./routes/images');
 var filesave = require('./routes/filesave');
 var download = require('./routes/download');
 var upload = require('./routes/upload');
-/*var soe = require('./routes/soe');*/
+var computer = require('./routes/computer');
 
 var mongoose = require('mongoose');
 var app = express();
@@ -45,7 +45,7 @@ app.use('/filesave', filesave);
 app.use('/download',download);
 app.use('/upload',upload);
 /*app.use('./soe',soe);*/
-
+app.use('./computer',computer);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
