@@ -1,10 +1,15 @@
 (function () {
   "use strict";
 
+
+
   var _mID = 0,
       storage = window.localStorage,
       minDelay = 250,
       awaitingConfirmation = false;
+      
+       
+
 
   function Bot (name) {
     var _id,
@@ -34,6 +39,8 @@
 
         this.sendBotMessage(greet[Math.floor(Math.random() * greet.length)] + ', ' + this.userName + '!', null);
       },
+
+      
 
       getDay: {
         today: function () {
@@ -152,6 +159,8 @@
         }
       },
 
+
+
       search: {
         google: function (query) {
           if(window.open('https://www.google.com/search?q=' + encodeURI(query))) {
@@ -169,6 +178,43 @@
           }
         },
 
+        /////////////////////////////////////////////////////////////////////////////////////
+    
+  getDb: function(query){
+    
+
+     if(window.open('register')){
+             this.sendBotMessage('I searched for "' + query + '" and opened a new window');
+          } else {
+           this.sendBotMessage('I couldn\'t open a new window with the results. Please check if spelling is correct or not.');
+         }
+
+        
+   },
+
+ upload: function(){
+  if(window.open('upload')){
+             this.sendBotMessage('You can upload there as long as you upload first');
+          } else {
+           this.sendBotMessage('I couldn\'t open a new window with the results. Please check if spelling is correct or not.');
+         }
+
+ },
+
+ login: function(){
+  if(window.open('login')){
+             this.sendBotMessage('You can login there.');
+          } else {
+           this.sendBotMessage('I couldn\'t open a new window with the results. Please check if spelling is correct or not.');
+         }
+
+ },
+
+   
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
         wikipedia: function (query) {
           if (!window.jQuery) {
             this.sendBotMessage('Missing Javascript library. Please contact my creator!');
@@ -183,7 +229,7 @@
             contentType: "application/json; charset=utf-8",
             async: false,
             dataType: "json",
-            headers: { 'Api-User-Agent': 'Aida-chatbot; mangiurea.gabriel@gmail.com' },
+            
             success: function (data, textStatus, jqXHR) {
               var title = data[1][0],
                   extract = data[2][0],
@@ -276,6 +322,8 @@
         }
       },
 
+
+
       talking: {
         start: function () {
           if (responsiveVoice.voiceSupport() == false) {
@@ -319,13 +367,13 @@
     };
 
     this.reactsTo = [
-      {pattern: /^(?:hello|hi)/i, reaction: ['Hello there!', 'Hi!', 'Greetings!'], description: 'to greet me', confirm: false, special: false},
-      {pattern: /(?:who|what) are you\??$/i, reaction: ['I am ' + this.name + ', a conversational bot.<br>I respond to a series of words or sentences like the ones above.'], description: 'to ask me who I am', confirm: false, special: false},
+      {pattern: /^(?:hello|hi|hey)/i, reaction: ['Hello there!', 'Hi!', 'Greetings!'], description: 'to greet me', confirm: false, special: false},
+      {pattern: /(?:who|what) are you\??$/i, reaction: ['I am ' + this.name  ], description: 'to ask me who I am', confirm: false, special: false},
       {pattern: /tell me about yourself/i, reaction: ['I am ' + this.name + ', a conversational bot.<br>I respond to a series of words or sentences like the ones above.'], description: 'to ask me who I am', confirm: false, special: false},
       {pattern: /(?:how are you\??|what are you doing\??)/i, reaction: ['I\'m fine, thank you!', 'I am doing pretty well.', 'I\'m chatting with you.'], description: 'to ask me how I feel', confirm: false, special: false},
       {pattern: /you are(?:\s[a-z]+)?\s(nice|sweet|beautiful|awesome|great|super|epic)/i, reaction: ['Thank you!', 'That\'s very nice of you to say that!', 'You are ##1!'], description: 'to compliment me', confirm: false, special: false},
-      {pattern: /gabriel mangiurea/i, reaction: ['Gabriel Mangiurea is my creator.<br>He is a web developer from Bucharest, Romania.<br>You can visit his website at <a href="https://gabrielmangiurea.github.io">gabrielmangiurea.github.io</a>.'], description: 'to ask about my creator', confirm: false, special: false},
-      {pattern: /my name is ([a-z ]+)/i, reaction: {action: this.actions.changeName}, description: 'me to change your name', confirm: false, special: false},
+      {pattern: /creater/i, reaction: ['creater is she'], description: 'to ask about my creator', confirm: false, special: false},
+      {pattern: /(?:my name is|i am|i\'m|)(\\s|!|\\.|$)([a-z ]+)/i, reaction: {action: this.actions.changeName}, description: 'me to change your name', confirm: false, special: false},
       {pattern: /i am ([a-z ]+)/i, reaction: {action: this.actions.changeName}, description: 'me to change your name', confirm: false, special: false},
       {pattern: /(?:you can )?call me ([a-z ]+)/i, reaction: {action: this.actions.changeName}, description: 'me to change your name', confirm: false, special: false},
       {pattern: /what day is (?:today|this day|it)\??/i, reaction: {action: this.actions.getDay.today}, description: 'me to say the day', confirm: false, special: false},
@@ -343,7 +391,11 @@
       {pattern: /stop listening/i, reaction: {action: this.actions.listening.stop}, description: 'me to stop listening you', confirm: false, special: false},
       {pattern: /start talking/i, reaction: {action: this.actions.talking.start}, description: 'me to start talking', confirm: false, special: false},
       {pattern: /stop talking/i, reaction: {action: this.actions.talking.stop}, description: 'me to stop talking', confirm: false, special: false},
-      {pattern: /(?:\b)(?:yes|no)(?:\b)/i, reaction: null, description: null, confirm: false, special: true}
+      {pattern: /(?:\b)(?:yes|no)(?:\b)/i, reaction: null, description: null, confirm: false, special: true},
+      {pattern: /get for (.+)/i, reaction:{action: this.actions.search.getDb}, description: 'code', confirm: false, special: false},
+      {pattern: /where to upload/i, reaction:{action: this.actions.search.upload}, description: 'upload', confirm: false, special: false},
+      {pattern: /how to login/i, reaction:{action: this.actions.search.login}, description: 'login', confirm: false, special: false}
+     
     ];
 
     this.events = {
@@ -406,9 +458,11 @@
 
   Bot.prototype.respond = function (question) {
     if (!question && !this._firstResponse) {
-      this.sendBotMessage('Hello! I am ' + this.name + ', a conversational bot.<br>I respond to a series of words or sentences like the ones above.<br>Let\'s talk!');
+      // this.sendBotMessage('Hello! I am ' + this.name + ', a conversational bot.<br>I respond to a series of words or sentences like the ones above.<br>Let\'s talk!');
+       this.sendBotMessage('Hello!');
 
-      this._firstResponse = true;
+
+      this._firstResponse = true; 
 
     } else if (question && this._firstResponse) {
       for (var i = 0, l = this.reactsTo.length; i < l; i++) {
@@ -638,5 +692,6 @@
       _bot.respond(voiceCommand);
     }
   });
+
 
 })();
