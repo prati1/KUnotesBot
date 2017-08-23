@@ -19,6 +19,7 @@ var download = require('./routes/download');
 var upload = require('./routes/upload');
 var computer = require('./routes/computer');
 var chatbot = require('./routes/chatbot');
+/*var sesindex = require('./routes/sesindex');*/
 
 var mongoose = require('mongoose');
 var app = express();
@@ -73,6 +74,7 @@ app.use('/upload',upload);
 /*app.use('./soe',soe);*/
 app.use('/computer',computer);
 app.use('/chatbot',chatbot);
+/*app.use('/sesindex',sesindex);*/
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

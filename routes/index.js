@@ -13,7 +13,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/chatbot', function(req, res, next) {
-  res.render('chatbot', { title: 'Express',token: tokenizer.tokenize(title) });
+  res.render('chatbot', { title: 'Express',token: tokenizer.tokenize("title") });
 });
 
 /*router.get('/upload', function(req, res, next) {
@@ -24,12 +24,12 @@ router.get('/chatbot', function(req, res, next) {
   res.render('register', { title: 'Express' });
 });
 */
-router.get('/soe', function(req, res, next) {
+/*router.get('/soe', function(req, res, next) {
   res.render('soe', { title: 'Express' });
 });
 router.get('/sos', function(req, res, next) {
   res.render('sos', { title: 'Express' });
-});
+});*/
 /*router.get('/computer', function(req, res, next) {
   res.render('computer', { title: 'Express' });
 });*/
@@ -56,12 +56,12 @@ router.get('/complecture', function(req,res){
 	})
 })
 
-router.get('/soe/compsyllabus', function(req,res){
+/*router.get('/soe/compsyllabus', function(req,res){
 	Image.find({uploadtype: "S"},function(err,doc){
 		if (err) throw err;
 		res.render('computer',{files:doc})
 	})
-})
+})*/
 /*router.get('/soe/computer/#lectures', function(req,res){
 	Image.find({department: "Computer Engineering"},function(err,doc){
 		if (err) throw err;
@@ -241,7 +241,7 @@ router.get('/login',function(req,res){
 		console.log('user is already logged in');
 	}
 	else{
-
+		/*res.redirect('/sesindex')*/
 		res.render('login', {help: "You must log in to continue..."});
 		console.log('user is not logged in');
 	}
